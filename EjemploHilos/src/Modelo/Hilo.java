@@ -34,15 +34,9 @@ public class Hilo extends Thread{
         {
             try{
                 
-                sleep(50);
-                
-                ventana.moverVaca();//metodo que mueve el obstaculo ()
-                comprobarPersonaje();
-                ventana.comprobarColision();//(metodo que detecta cuando el personaje luigui choca con el panda)
-                ventana.cambiarIcono(contador++);
-            
-                ventana.mover();
-           
+                sleep(100);
+                          
+           ventana.generar();
             }
             catch(Exception e){
                 System.out.println("Hubo un error en el hilo de ejecución"+e);
