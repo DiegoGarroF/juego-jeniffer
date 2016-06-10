@@ -6,6 +6,8 @@
 package Controlador;
 
 import Vista.FRM_Ventana;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -21,18 +23,15 @@ public class ControladorVentana implements MouseMotionListener, KeyListener{
     public ControladorVentana(FRM_Ventana fRM_Ventana) {
         this.fRM_Ventana=fRM_Ventana;
     }
-
-    
-    
+  
     // eventos del  mouse
     @Override
     public void mouseDragged(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-       
+     
     }
 
     
@@ -40,18 +39,28 @@ public class ControladorVentana implements MouseMotionListener, KeyListener{
     // Eventos del teclado
     @Override
     public void keyTyped(KeyEvent e) {
-   
+   System.err.println(""+e.getKeyCode());
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) 
+    {
+        System.err.println(""+e.getKeyCode());
         if(e.getKeyCode()==KeyEvent.VK_LEFT)
         {
             fRM_Ventana.moverBarrilIzquierda();
         }
-         if(e.getKeyCode()==KeyEvent.VK_RIGHT)
+        if(e.getKeyCode()==KeyEvent.VK_RIGHT)
         {
             fRM_Ventana.moverBarrilDerecha();
+        }
+        if(e.getKeyCode()==38)
+        {
+            fRM_Ventana.moverBarriArriba();
+        }
+        if(e.getKeyCode()==40)
+        {
+            fRM_Ventana.moverHaciaBajo();
         }
      
     }
@@ -59,5 +68,7 @@ public class ControladorVentana implements MouseMotionListener, KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
     }
+
+   
     
 }

@@ -29,14 +29,22 @@ public class Hilo extends Thread{
     
        // sonido = java.applet.Applet.newAudioClip(getClass().getResource("../images/FT_zero.wav"));
         //sonido.loop(); //loop cuando termina, vuelve a empezar
-        
-        while(true)
+        int contador=0, contador2=0; 
+       while(true)
         {
             try{
                 
                 sleep(100);
-                          
-           ventana.generar();
+                contador++;
+                ventana.mover();
+                ventana.exito();
+                if(contador==30)
+                {
+                    contador2++;
+                    ventana.cambiarNumero(contador2);  
+                    contador=0;
+                }  
+                
             }
             catch(Exception e){
                 System.out.println("Hubo un error en el hilo de ejecución"+e);
