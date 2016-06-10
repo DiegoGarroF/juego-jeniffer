@@ -5,8 +5,9 @@
  */
 package Modelo;
 
-import Vista.FRM_Ventana;
+import Vista.FRM_Principal;
 import java.applet.AudioClip;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,10 +16,10 @@ import java.applet.AudioClip;
 //los hilos tienen varios estados
 public class Hilo extends Thread{
 
-    FRM_Ventana ventana;
+    FRM_Principal ventana;
     public int contador=-1;
     AudioClip sonido;
-    public Hilo(FRM_Ventana ventana)
+    public Hilo(FRM_Principal ventana)
     {
         this.ventana=ventana;
         
@@ -30,26 +31,36 @@ public class Hilo extends Thread{
        // sonido = java.applet.Applet.newAudioClip(getClass().getResource("../images/FT_zero.wav"));
         //sonido.loop(); //loop cuando termina, vuelve a empezar
         int contador=0, contador2=0; 
-       while(true)
+        boolean estado=true;
+       while(estado)
         {
             try{
                 
                 sleep(100);
                 contador++;
+              // 
                 ventana.mover();
-                ventana.exito();
+                ventana.atraparObjetos();
+               // ventana.exito(); 
                 if(contador==30)
                 {
                     contador2++;
                     ventana.cambiarNumero(contador2);  
                     contador=0;
                 }  
+                if(contador2==15)
+                {
+                    estado=false;
+                }
                 
             }
             catch(Exception e){
                 System.out.println("Hubo un error en el hilo de ejecución"+e);
             }
         }
+       ventana.mostrarMensaje("El Juego ha concluido el total de puntos es de "+ventana.getTotalPuntos());
+       ventana.estadoInicialJlabel();
+       ventana.habilitarOpciones();
     }
       
     public void comprobarPersonaje(){

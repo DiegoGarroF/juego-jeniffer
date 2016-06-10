@@ -5,7 +5,8 @@
  */
 package Controlador;
 
-import Vista.FRM_Ventana;
+import Vista.FRM_Principal;
+import com.sun.imageio.plugins.jpeg.JPEG;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,12 +18,16 @@ import java.awt.event.MouseMotionListener;
  *
  * @author Jeniffer
  */
-public class ControladorVentana implements MouseMotionListener, KeyListener{
+public class ControladorVentana implements MouseMotionListener,ActionListener {
 
-    private FRM_Ventana fRM_Ventana;
-    public ControladorVentana(FRM_Ventana fRM_Ventana) {
-        this.fRM_Ventana=fRM_Ventana;
+    private FRM_Principal fRM_Principal;
+    public ControladorVentana(FRM_Principal fRM_Ventana) {
+        this.fRM_Principal=fRM_Principal;
+       
     }
+
+   
+    
   
     // eventos del  mouse
     @Override
@@ -31,44 +36,23 @@ public class ControladorVentana implements MouseMotionListener, KeyListener{
 
     @Override
     public void mouseMoved(MouseEvent e) {
-     
+        System.err.println("hola ");
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getActionCommand().equals("Salir"))
+        {
+            System.exit(0);
+        }
+        if(e.getActionCommand().endsWith("Nuevo"))
+        {
+          fRM_Principal.nuevoJuego();
+        }
+    }
+    
 
     
     
-    // Eventos del teclado
-    @Override
-    public void keyTyped(KeyEvent e) {
-   System.err.println(""+e.getKeyCode());
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) 
-    {
-        System.err.println(""+e.getKeyCode());
-        if(e.getKeyCode()==KeyEvent.VK_LEFT)
-        {
-            fRM_Ventana.moverBarrilIzquierda();
-        }
-        if(e.getKeyCode()==KeyEvent.VK_RIGHT)
-        {
-            fRM_Ventana.moverBarrilDerecha();
-        }
-        if(e.getKeyCode()==38)
-        {
-            fRM_Ventana.moverBarriArriba();
-        }
-        if(e.getKeyCode()==40)
-        {
-            fRM_Ventana.moverHaciaBajo();
-        }
-     
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
-
-   
     
 }
